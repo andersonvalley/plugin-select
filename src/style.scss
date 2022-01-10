@@ -1,0 +1,20 @@
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+.wrap {
+  width: 500px;
+}
+
+$height: 46px;
+
+.select {
+  &__input {
+    border: 1px solid #ccc;
+    height: 46px;
+    border-radius: 5px;
+  }
+}
