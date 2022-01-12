@@ -1,3 +1,11 @@
+$height: 50px;
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
 .app {
   display: flex;
   align-items: center;
@@ -6,15 +14,114 @@
 }
 
 .wrap {
-  width: 500px;
+  width: 400px;
 }
 
-$height: 46px;
-
 .select {
+  width: 100%;
+  position: relative;
+  z-index: 100;
+
+  &.select-open {
+    .select__dropdown {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .select__input {
+      border-bottom: none;
+    }
+
+    .select__icon {
+      transform: rotate(180deg);
+      transition: all 200ms ease-in-out;
+    }
+
+    .select__overlay {
+      display: block;
+    }
+  }
+
   &__input {
-    border: 1px solid #ccc;
-    height: 46px;
+    border: 1px solid #f3f3f4;
+    height: $height;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #1a3b5d;
+    padding: 0 1rem;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+
+    span {
+      pointer-events: none;
+    }
+
+    .material-icons.select__icon {
+      color: #1a3b5d;
+      opacity: 0.8;
+    }
+
+    &:hover {
+      border-color: rgba(132, 37, 141, 0.226);
+      box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+
+      .material-icons.select__icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__dropdown {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+    position: absolute;
+    border: 1px solid #f3f3f4;
     border-radius: 5px;
+    top: $height;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.062);
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(248, 248, 248);
+    cursor: pointer;
+    transition: background-color 150ms ease-in-out;
+    color: #1a3b5d;
+
+    &:hover {
+      background-color: rgb(245, 244, 244);
+    }
+
+    &-current {
+      color: rgb(234, 76, 137);
+    }
+  }
+
+  &__icon {
+    pointer-events: none;
+    transition: all 200ms ease-in-out;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: -1;
   }
 }
